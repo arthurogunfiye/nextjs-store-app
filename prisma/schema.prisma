@@ -13,7 +13,7 @@ model Product {
   name          String
   company       String
   description   String
-  featured      String
+  featured      Boolean
   image         String
   price         Int
   createdAt     DateTime      @default(now())
