@@ -4,13 +4,16 @@ import DarkMode from './DarkMode';
 import LinksDropdown from './LinksDropdown';
 import Logo from './Logo';
 import NavSearch from './NavSearch';
+import { Suspense } from 'react';
 
 const Navbar = () => {
   return (
     <div className='border-b'>
       <Container className={containerStyles}>
         <Logo />
-        <NavSearch />
+        <Suspense>
+          <NavSearch />
+        </Suspense>
         <div className='flex gap-4 items-center'>
           <CartButton />
           <DarkMode />
