@@ -30,4 +30,4 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-const buttonStyles = 'w-full mb-2 capitalize font-normal';
+const buttonStyles = 'w-full mb-2 capitalize font-normal justify-start';
