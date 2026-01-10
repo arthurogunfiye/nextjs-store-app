@@ -1,14 +1,12 @@
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { faker } from '@faker-js/faker';
+import { createProductAction } from '@/utils/actions';
 import FormInput from '@/components/form/FormInput';
-
-const createProductAction = async (formData: FormData) => {
-  'use server';
-  const name = formData.get('name') as string;
-  console.log('name>>> ', name);
-};
+import FormContainer from '@/components/form/FormContainer';
+import PriceInput from '@/components/form/PriceInput';
+import ImageInput from '@/components/form/ImageInput';
+import TextAreaInput from '@/components/form/TextAreaInput';
+import CheckboxInput from '@/components/form/CheckboxInput';
+import { SubmitButton } from '@/components/form/Buttons';
 
 const CreateProductPage = () => {
   const name = faker.commerce.productName();
@@ -19,17 +17,33 @@ const CreateProductPage = () => {
     <section>
       <h1 className={h1Styles}>create product</h1>
       <div className={formDivStyles}>
-        <form action={createProductAction}>
-          <FormInput
-            name='name'
-            type='text'
-            label='product name'
-            defaultValue={name}
+        <FormContainer action={createProductAction}>
+          <div className={containerDivStyles}>
+            <FormInput
+              type='text'
+              name='name'
+              label='product name'
+              defaultValue={name}
+            />
+            <FormInput
+              type='text'
+              name='company'
+              label='company'
+              defaultValue={company}
+            />
+            <PriceInput />
+            <ImageInput />
+          </div>
+          <TextAreaInput
+            name='description'
+            labelText='product description'
+            defaultValue={description}
           />
-          <Button type='submit' size='lg'>
-            Submit
-          </Button>
-        </form>
+          <div className='mt-6'>
+            <CheckboxInput name='featured' label='featured' />
+          </div>
+          <SubmitButton text='create product' className='mt-6' />
+        </FormContainer>
       </div>
     </section>
   );
@@ -39,3 +53,4 @@ export default CreateProductPage;
 
 const h1Styles = 'text-2xl font-semibold mb-8 capitalize';
 const formDivStyles = 'border p-8 rounded-md';
+const containerDivStyles = 'grid gap-4 md:grid-cols-2 my-4';
