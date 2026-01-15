@@ -209,6 +209,32 @@ export const fetchFavouriteId = async ({
   return favourite?.id || null;
 };
 
-export const toggleFavouriteAction = async () => {
-  return { message: 'Toggle favourite action triggered...' };
+export const toggleFavouriteAction = async (prevState: {
+  productId: string;
+  favouriteId: string | null;
+  pathname: string;
+}) => {
+  const user = await getAuthUser();
+  const { productId, favouriteId, pathname } = prevState;
+
+  try {
+    if (favouriteId) {
+      await db.favourite.delete({
+        where: { id: favouriteId }
+      });
+    } else {
+      await db.favourite.create({
+        data: {
+          productId,
+          clerkId: user.id
+        }
+      });
+    }
+
+    revalidatePath(pathname);
+
+    return { message: favouriteId ? 'Removed from faves' : 'Added to faves' };
+  } catch (error) {
+    return renderError(error);
+  }
 };
