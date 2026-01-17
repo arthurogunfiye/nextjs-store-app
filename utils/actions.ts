@@ -249,3 +249,20 @@ export const fetchUserFavourites = async () => {
 
   return favourites;
 };
+
+export const createReviewAction = async (
+  prevState: any,
+  formData: FormData
+) => {
+  return { message: 'Review submitted successfully' };
+};
+
+export const fetchProductReviews = async () => {};
+
+export const fetchProductReviewsByUser = async () => {};
+
+export const deleteReviewAction = async () => {};
+
+export const findExistingReview = async () => {};
+
+export const fetchProductRating = async () => {};
