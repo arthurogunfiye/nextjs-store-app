@@ -5,6 +5,7 @@ import { formatCurrency } from '@/utils/format';
 import FavoriteToggleButton from '@/components/products/FavoriteToggleButton';
 import AddToCart from '@/components/single-product/AddToCart';
 import ProductRating from '@/components/single-product/ProductRating';
+import ShareButton from '@/components/single-product/ShareButton';
 
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   const product = await fetchSingleProduct(params.id);
@@ -27,11 +28,14 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
           />
         </div>
 
-        {/* PDT INFO - FIRST COL */}
+        {/* PDT INFO - SECOND COL */}
         <div>
           <div className={pdtInfoDivStyles}>
             <h1 className={h1Styles}>{name}</h1>
-            <FavoriteToggleButton productId={params.id} />
+            <div className='flex items-center gap-x-2'>
+              <FavoriteToggleButton productId={params.id} />
+              <ShareButton productId={params.id} name={name} />
+            </div>
           </div>
           <ProductRating productId={params.id} />
           <h4 className='text-lg mt-2'>{company}</h4>
