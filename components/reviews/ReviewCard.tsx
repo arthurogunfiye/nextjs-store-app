@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Rating from './Rating';
 import Comment from './Comment';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
 
 type ReviewCardProps = {
   reviewInfo: {
