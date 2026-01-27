@@ -440,7 +440,8 @@ const updateOrCreateCartItem = async ({
 export const updateCart = async (cart: Cart) => {
   const cartItems = await db.cartItem.findMany({
     where: { cartId: cart.id },
-    include: { product: true }
+    include: { product: true },
+    orderBy: { createdAt: 'asc' }
   });
 
   let numItemsInCart = 0;
@@ -461,7 +462,7 @@ export const updateCart = async (cart: Cart) => {
     include: includeProductClause
   });
 
-  return currentCart;
+  return { cartItems, currentCart };
 };
 
 export const addToCartAction = async (prevState: any, formData: FormData) => {

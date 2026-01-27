@@ -1,8 +1,9 @@
+'use client';
+
 import { Card } from '@/components/ui/card';
 import { FirstColumn, SecondColumn, FourthColumn } from './CartItemColumns';
 import ThirdColumn from './ThirdColumn';
 import { CartItemWithProduct } from '@/utils/types';
-import { CartItem } from '@prisma/client';
 
 const CartItemsList = ({ cartItems }: { cartItems: CartItemWithProduct[] }) => {
   return (
